@@ -1,0 +1,21 @@
+{
+	"type": "update",
+	"credentials": {
+		"partnerUserID": "aa_gabriel_shearwaterasia_com",
+		"partnerUserSecret": "7d2cd95a926ce49784700d5b3089b26b095605b7"
+	},
+	"inputSettings": { "type": "policy", "policyID": "77A9EB59AFBDFFED" },
+	"tags": {
+		"data": [
+			{
+				"name": "Tag",
+				"tags": [
+					{
+						"name": "Tag 3 from API",
+						"enabled": true
+					}
+				]
+			}
+		]
+	}
+}

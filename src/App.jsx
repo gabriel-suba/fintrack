@@ -8,6 +8,10 @@ import Sidebar, { SidebarItem } from "./components/Sidebar";
 import Transactions from "./components/Contents/Transactions";
 import TransactionForm from "./components/TransactionForm";
 
+// TODO
+// 1. Create Transaction form.
+// 2. Tab "active" state - should have indicator on the sidebar item.
+
 function App() {
 	const [activeTab, setActiveTab] = useState("Transactions");
 	const [open, setOpen] = useState(false);

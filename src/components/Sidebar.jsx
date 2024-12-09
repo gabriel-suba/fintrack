@@ -5,11 +5,16 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { grey } from "@mui/material/colors";
 import logo from "../assets/logo.svg";
 
-const RowItemBase = styled(Box)(() => ({
+const RowItemBase = styled(Box)(({ theme }) => ({
 	display: "flex",
 	alignItems: "center",
 	padding: "0.5rem",
-	marginBottom: "0.5rem",
+	margin: "0.5rem 0", // Combines margin-top and margin-bottom
+	transition: "background 250ms ease",
+	cursor: "pointer",
+	":hover": {
+		background: theme.palette.grey[100],
+	},
 }));
 
 const SidebarToggle = styled(IconButton)(() => ({
@@ -97,14 +102,10 @@ function Sidebar({ open, setOpen, children }) {
 	);
 }
 
-export function SidebarItem({ icon, text, open, handleOnClick }) {
+export function SidebarItem({ icon, text, open, handleOnClick, isActive }) {
 	return (
 		<RowItemBase
-			sx={{
-				marginTop: "0.5rem",
-				transition: "background 250ms ease",
-				":hover": { background: grey[100], cursor: "pointer" },
-			}}
+			bgcolor={isActive ? grey[100] : grey[0]}
 			onClick={handleOnClick}
 			data-tab={text}
 		>

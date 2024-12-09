@@ -10,10 +10,7 @@ import TransactionForm from "./components/TransactionForm";
 
 // TODO
 // 1. Tab "active" state - should have indicator on the sidebar item.
-// 2. Transaction modal form should not exit when outside div is touched.
-//    It should have close button to handle closing.
-//    Upon closing, reset the form.
-// 3. Create POST logic for submitting the form.
+// 2. Create POST logic for submitting the form.
 
 function App() {
 	const [activeTab, setActiveTab] = useState("Transactions");
@@ -33,12 +30,14 @@ function App() {
 					icon={<SpaceDashboardOutlinedIcon sx={{ width: "1.5rem", height: "1.5rem" }} />}
 					text="Dashboard"
 					handleOnClick={(handleSidebarClick)}
+					isActive={activeTab === "Dashboard"}
 				/>
 				<SidebarItem
 					open={open}
 					icon={<ReceiptLongOutlinedIcon sx={{ width: "1.5rem", height: "1.5rem" }} />}
 					text="Transactions"
 					handleOnClick={handleSidebarClick}
+					isActive={activeTab === "Transactions"}
 				/>
 			</Sidebar>
 

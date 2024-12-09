@@ -7,9 +7,11 @@ import dayjs from "dayjs";
 // MUI components
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import FormControl from "@mui/material/FormControl";
 import InputAdornment from "@mui/material/InputAdornment";
 import InputLabel from "@mui/material/InputLabel";
+import IconButton from "@mui/material/IconButton";
 import Modal from "@mui/material/Modal";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import TextField from "@mui/material/TextField";
@@ -22,35 +24,44 @@ import StyledTransactionForm from "./StyledComponents/StyledTransactionForm";
 
 // Data
 import { types, accounts } from "../data/mockData";
+const defaultData = {
+	type: "income",
+	date: new Date(),
+	memo: "",
+	from: "",
+	account: "cash",
+	amount: "",
+}
 
 function TransactionForm({ openModal, handleCloseModal }) {
-	const [formValues, setFormValues] = useState({
-		type: "income",
-		date: new Date(),
-		memo: "",
-		from: "",
-		account: "cash",
-		amount: "",
-	});
+	const [formValues, setFormValues] = useState(defaultData);
 
 	const handleValuesChange = (e) => {
 		let { target: { name, value } } = e;
 		setFormValues(prev => ({ ...prev, [name]: value }));
 	}
 
+	const handleFormClose = () => {
+		setFormValues(defaultData);
+		handleCloseModal();
+	}
+
 	const handleOnSubmit = (e) => {
 		e.preventDefault();
 		console.log(formValues)
+		handleFormClose();
 	}
 
 	return (
 		<Modal
 			open={openModal}
-			onClose={handleCloseModal}
 			aria-labelledby="modal-modal-transaction-form"
 			aria-describedby="modal-modal-description"
 		>
 			<StyledTransactionForm>
+				<IconButton onClick={handleFormClose} sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}>
+					<CloseOutlinedIcon />
+				</IconButton>
 				<Typography component="h1" marginBottom="1rem" fontSize="1.5rem" fontWeight="bold">New Transaction</Typography>
 				<Box component="form" onSubmit={handleOnSubmit}>
 					<Select name="type" value={formValues.type} options={types} handleOnChange={handleValuesChange} />

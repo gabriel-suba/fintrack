@@ -9,8 +9,11 @@ import Transactions from "./components/Contents/Transactions";
 import TransactionForm from "./components/TransactionForm";
 
 // TODO
-// 1. Create Transaction form.
-// 2. Tab "active" state - should have indicator on the sidebar item.
+// 1. Tab "active" state - should have indicator on the sidebar item.
+// 2. Transaction modal form should not exit when outside div is touched.
+//    It should have close button to handle closing.
+//    Upon closing, reset the form.
+// 3. Create POST logic for submitting the form.
 
 function App() {
 	const [activeTab, setActiveTab] = useState("Transactions");

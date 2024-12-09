@@ -60,6 +60,7 @@ function Sidebar({ open, setOpen, children }) {
 			<Box>
 				<RowItemBase
 					sx={{
+						marginTop: "0rem",
 						flexDirection: "row-reverse",
 						borderBottomWidth: "1px",
 						borderBottomStyle: "solid",

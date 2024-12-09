@@ -4,8 +4,8 @@ import { styled } from "@mui/system";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { grey } from "@mui/material/colors";
-
 import Actions from "./Actions";
+import dayjs from "dayjs";
 
 const FlexAlignCenter = styled(Box)(() => ({
 	display: "flex",
@@ -45,9 +45,9 @@ function TransactionCard({ tx }) {
 					<Typography component="p" fontSize="1rem" fontWeight="bold">
 						{tx.documentNumber}
 					</Typography>
-					<Chip label="transfer" size="small" />
+					<Chip label={tx.type} size="small" />
 					<Typography component="p" fontSize="0.75rem" color={grey[700]}>
-						{tx.date}
+						{dayjs(tx.date).format("YYYY/MM/DD")}
 					</Typography>
 				</FlexAlignCenter>
 				<IconButton onClick={handleClickActions}>
@@ -64,16 +64,24 @@ function TransactionCard({ tx }) {
 			</Typography>
 			<FlexAlignCenter justifyContent="space-between" marginTop="1rem">
 				<FlexAlignCenter gap="0.25rem">
-					<Typography component="p" fontSize="0.875rem" fontWeight="bold">
-						{tx.from}
-					</Typography>
-					<ArrowRightAltIcon />
+					{tx.type === "transfer" && (
+						<>
+							<Typography component="p" fontSize="0.875rem" fontWeight="bold">
+								{tx.from}
+							</Typography>
+							<ArrowRightAltIcon />
+						</>
+					)}
 					<Typography component="p" fontSize="0.875rem" fontWeight="bold">
 						{tx.account}
 					</Typography>
 				</FlexAlignCenter>
 				<Typography component="p" fontSize="0.875rem">
-					PHP {new Intl.NumberFormat().format(Number(tx.amount))}
+					{
+						tx.type === "expense" ?
+						(`PHP -${new Intl.NumberFormat().format(Number(tx.amount))}`) :
+						(`PHP ${new Intl.NumberFormat().format(Number(tx.amount))}`)
+					}
 				</Typography>
 			</FlexAlignCenter>
 		</>

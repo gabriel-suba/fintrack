@@ -1,10 +1,3 @@
-const getRandomDate = (start, end) => {
-	const startDate = new Date(start).getTime(); // Convert start date to timestamp
-	const endDate = new Date(end).getTime(); // Convert end date to timestamp
-	const randomTimestamp = Math.random() * (endDate - startDate) + startDate; // Random timestamp
-	return new Date(randomTimestamp).toLocaleDateString("en-us"); // Format as a readable date
-};
-
 export const types = [
 	{ value: "transfer", label: "Transfer" },
 	{ value: "income", label: "Income" },
@@ -18,14 +11,38 @@ export const accounts = [
 	{ value: "maya", label: "Maya" },
 ];
 
-export const transactions = Array.from({ length: 10 }, (_, index) => ({
-	delete: false,
-	id: index,
-	documentNumber: `TX${String(index + 1).padStart(7, "0")}`,
-	type: "transfer",
-	date: getRandomDate("2024-01-01", "2024-12-31"),
-	memo: `Memo for transaction ${index + 1}`,
-	from: "BDO",
-	account: "Seabank",
-	amount: `${12_000 + index * 10000}`,
-}));
+export const txs = [
+	{
+		delete: false,
+		id: 0,
+		documentNumber: `TX000001`,
+		type: "income",
+		date: new Date(),
+		memo: `Income for December`,
+		from: "",
+		account: "BDO",
+		amount: 13_000,
+	},
+	{
+		delete: false,
+		id: 1,
+		documentNumber: `TX000002`,
+		type: "expense",
+		date: new Date(),
+		memo: `Gifts`,
+		from: "",
+		account: "Seabank",
+		amount: 5_000,
+	},
+	{
+		delete: false,
+		id: 2,
+		documentNumber: `TX000003`,
+		type: "transfer",
+		date: new Date(),
+		memo: `Withdraw cash for allowance`,
+		from: "BDO",
+		account: "Cash",
+		amount: 2_500,
+	},
+];

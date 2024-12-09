@@ -4,13 +4,16 @@ import Title from "../StyledComponents/Title";
 import TransactionCard, { Row } from "../TransactionCard";
 import Typography from "@mui/material/Typography";
 import PostAddOutlinedIcon from "@mui/icons-material/PostAddOutlined";
-import { transactions } from "../../data/mockData";
+import { useContext } from "react";
+import { TransactionContext } from "../../context/TransactionContext";
 
 function Transactions({ handleOpenModal }) {
+	const { transactions } = useContext(TransactionContext);
+
 	return (
 		<>
 			<Title>
-				<Typography fontSize="1.125rem">Transactions</Typography>
+				<Typography alignSelf="center" fontSize="1.125rem">Transactions</Typography>
 			</Title>
 
 			<Box sx={{ padding: "3.55rem 0.5rem 0.5rem" }}>

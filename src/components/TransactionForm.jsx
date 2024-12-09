@@ -1,5 +1,5 @@
 // React hooks
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 // External libraries
 import dayjs from "dayjs";
@@ -22,8 +22,11 @@ import FormDatePicker from "./FormDatePicker";
 import Select from "./Select";
 import StyledTransactionForm from "./StyledComponents/StyledTransactionForm";
 
+// Context
+import { TransactionContext } from "../context/TransactionContext";
+
 // Data
-import { types, accounts } from "../data/mockData";
+import { accounts, types } from "../data/mockData";
 const defaultData = {
 	type: "income",
 	date: new Date(),
@@ -35,6 +38,7 @@ const defaultData = {
 
 function TransactionForm({ openModal, handleCloseModal }) {
 	const [formValues, setFormValues] = useState(defaultData);
+	const { transactions, setTransactions } = useContext(TransactionContext);
 
 	const handleValuesChange = (e) => {
 		let { target: { name, value } } = e;
@@ -48,7 +52,12 @@ function TransactionForm({ openModal, handleCloseModal }) {
 
 	const handleOnSubmit = (e) => {
 		e.preventDefault();
-		console.log(formValues)
+
+		const id = transactions.length + 1;
+		const idWithLeadingZeros = id.toString().padStart(6, "0");
+		const documentNumber = `TX${idWithLeadingZeros}`;
+
+		setTransactions(prev => [...prev, { ...formValues, id: id, documentNumber: documentNumber }]);
 		handleFormClose();
 	}
 

@@ -9,8 +9,12 @@ import Transactions from "./components/Contents/Transactions";
 import TransactionForm from "./components/TransactionForm";
 
 // TODO
-// 1. Tab "active" state - should have indicator on the sidebar item.
-// 2. Create POST logic for submitting the form.
+// 1. Create POST logic for submitting the form.
+//    1.1. Logic is still a placeholder.
+//    1.2. Need to create backend.
+//    1.3. Study ways on fetching data.
+// 2. Add tabs for Accounts
+// 3. React/Tanstack router for tabs.
 
 function App() {
 	const [activeTab, setActiveTab] = useState("Transactions");

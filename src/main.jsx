@@ -8,11 +8,14 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme/theme.js';
+import { TransactionProvider } from './context/TransactionContext';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
-      <App />
+      <TransactionProvider>
+        <App />
+      </TransactionProvider>
     </ThemeProvider>
   </StrictMode>,
 )

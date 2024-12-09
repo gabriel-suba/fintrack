@@ -84,6 +84,7 @@ function TransactionForm({ openModal, handleCloseModal }) {
 					<FormControl fullWidth margin="dense">
 						<InputLabel htmlFor="amount">Amount</InputLabel>
 						<OutlinedInput
+							inputMode="numeric"
 							type="number"
 							id="amount"
 							name="amount"

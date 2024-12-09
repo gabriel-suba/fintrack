@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import PostAddOutlinedIcon from "@mui/icons-material/PostAddOutlined";
 import { useContext } from "react";
 import { TransactionContext } from "../../context/TransactionContext";
+import MainContainer from "../MainContainer";
 
 function Transactions({ handleOpenModal }) {
 	const { transactions } = useContext(TransactionContext);
@@ -13,10 +14,12 @@ function Transactions({ handleOpenModal }) {
 	return (
 		<>
 			<Title>
-				<Typography alignSelf="center" fontSize="1.125rem">Transactions</Typography>
+				<Typography alignSelf="center" fontSize="1.125rem">
+					Transactions
+				</Typography>
 			</Title>
 
-			<Box sx={{ padding: "3.55rem 0.5rem 0.5rem" }}>
+			<MainContainer>
 				<Box sx={{ width: "min-content", marginLeft: "auto", padding: "0.5rem 0 0", fontSize: "0.75rem" }}>
 					<Button
 						size="small"
@@ -34,7 +37,7 @@ function Transactions({ handleOpenModal }) {
 						<TransactionCard tx={tx} />
 					</Row>
 				))}
-			</Box>
+			</MainContainer>
 		</>
 	);
 }

@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import Title from "../StyledComponents/Title";
+import Title from "../components/StyledComponents/Title";
 import Typography from "@mui/material/Typography";
 
 

@@ -1,12 +1,12 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Title from "../StyledComponents/Title";
-import TransactionCard, { Row } from "../TransactionCard";
+import Title from "../components/StyledComponents/Title";
+import TransactionCard, { Row } from "../components/TransactionCard";
 import Typography from "@mui/material/Typography";
 import PostAddOutlinedIcon from "@mui/icons-material/PostAddOutlined";
 import { useContext } from "react";
-import { TransactionContext } from "../../context/TransactionContext";
-import MainContainer from "../MainContainer";
+import { TransactionContext } from "../context/TransactionContext";
+import MainContainer from "../components/MainContainer";
 
 function Transactions({ handleOpenModal }) {
 	const { transactions } = useContext(TransactionContext);

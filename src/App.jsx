@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
-import Dashboard from "./components/Contents/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import ReceiptLongOutlinedIcon from "@mui/icons-material/ReceiptLongOutlined";
 import SpaceDashboardOutlinedIcon from "@mui/icons-material/SpaceDashboardOutlined";
 import Sidebar, { SidebarItem } from "./components/Sidebar";
-import Transactions from "./components/Contents/Transactions";
+import Transactions from "./pages/Transactions";
 import TransactionForm from "./components/TransactionForm";
 
 // TODO
@@ -15,6 +15,7 @@ import TransactionForm from "./components/TransactionForm";
 //    1.3. Study ways on fetching data.
 // 2. Add tabs for Accounts
 // 3. React/Tanstack router for tabs.
+// 4. Improve file structure
 
 function App() {
 	const [activeTab, setActiveTab] = useState("Transactions");

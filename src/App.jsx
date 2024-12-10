@@ -15,7 +15,6 @@ import TransactionForm from "./components/TransactionForm";
 //    1.3. Study ways on fetching data.
 // 2. Add tabs for Accounts
 // 3. React/Tanstack router for tabs.
-// 4. Improve file structure
 
 function App() {
 	const [activeTab, setActiveTab] = useState("Transactions");

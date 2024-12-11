@@ -1,7 +1,7 @@
 import styled from "@mui/system/styled";
 import Box from "@mui/material/Box";
 
-const StyledTransactionForm = styled(Box)(({ theme }) => ({
+const StyledModalForm = styled(Box)(({ theme }) => ({
     position: "absolute",
 	top: "50%",
 	left: "50%",
@@ -13,4 +13,4 @@ const StyledTransactionForm = styled(Box)(({ theme }) => ({
 	borderRadius: "0.5rem"
 }));
 
-export default StyledTransactionForm;
+export default StyledModalForm;

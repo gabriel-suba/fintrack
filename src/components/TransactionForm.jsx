@@ -2,18 +2,14 @@ import { useState, useContext } from "react";
 import dayjs from "dayjs";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import FormControl from "@mui/material/FormControl";
 import InputAdornment from "@mui/material/InputAdornment";
 import InputLabel from "@mui/material/InputLabel";
-import IconButton from "@mui/material/IconButton";
-import Modal from "@mui/material/Modal";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
 import FormDatePicker from "./ui/FormDatePicker";
 import Select from "./ui/Select";
-import StyledTransactionForm from "./StyledComponents/StyledTransactionForm";
+import FormModal from "./ui/FormModal";
 import { TransactionContext } from "../services/context/TransactionContext";
 import { accounts, types } from "../data/mockData";
 
@@ -52,16 +48,12 @@ function TransactionForm({ openModal, handleCloseModal }) {
 	}
 
 	return (
-		<Modal
+		<FormModal
 			open={openModal}
-			aria-labelledby="modal-modal-transaction-form"
-			aria-describedby="modal-modal-description"
+			ariaLabel="transaction-form"
+			handleFormClose={handleFormClose}
+			title="New Transaction"
 		>
-			<StyledTransactionForm>
-				<IconButton onClick={handleFormClose} sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}>
-					<CloseOutlinedIcon />
-				</IconButton>
-				<Typography component="h1" marginBottom="1rem" fontSize="1.5rem" fontWeight="bold">New Transaction</Typography>
 				<Box component="form" onSubmit={handleOnSubmit}>
 					<Select name="type" value={formValues.type} options={types} handleOnChange={handleValuesChange} />
 					<Select name="account" value={formValues.account} options={accounts} handleOnChange={handleValuesChange} />
@@ -97,8 +89,7 @@ function TransactionForm({ openModal, handleCloseModal }) {
 					/>
 					<Button type="submit" variant="contained" sx={{ marginTop: "1rem" }}>Submit</Button>
 				</Box>
-			</StyledTransactionForm>
-		</Modal>
+		</FormModal>
 	);
 }
 

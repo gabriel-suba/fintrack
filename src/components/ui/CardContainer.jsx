@@ -1,6 +1,6 @@
 import Paper from "@mui/material/Paper";
 
-function TransactionCardContainer({ children }) {
+function CardContainer({ children }) {
 	return (
 		<Paper
 			sx={{
@@ -18,4 +18,4 @@ function TransactionCardContainer({ children }) {
 	);
 }
 
-export default TransactionCardContainer;
+export default CardContainer;

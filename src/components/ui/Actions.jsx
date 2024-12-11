@@ -12,6 +12,7 @@ function Actions({ anchorEl, openAnchor, handleCloseActions, list }) {
 			MenuListProps={{
 				"aria-labelledby": "basic-button",
 			}}
+			elevation={1}
 		>
 			{list.map(item => (
 				<MenuItem key={item.action} onClick={handleCloseActions}>

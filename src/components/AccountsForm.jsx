@@ -10,7 +10,7 @@ function AccountsForm({ openModal, handleCloseModal }) {
             open={openModal}
             ariaLabel="accounts-form"
             handleFormClose={handleFormClose}
-            title="New Transaction"
+            title="New Account"
         >
             Hello!
         </FormModal>

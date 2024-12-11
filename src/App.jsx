@@ -4,7 +4,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Dashboard from "./pages/Dashboard";
 import ReceiptLongOutlinedIcon from "@mui/icons-material/ReceiptLongOutlined";
 import SpaceDashboardOutlinedIcon from "@mui/icons-material/SpaceDashboardOutlined";
-import Sidebar, { SidebarItem } from "./components/Sidebar";
+import Sidebar from "./components/Sidebar";
+import SidebarItem from "./components/ui/SidebarItem";
 import Transactions from "./pages/Transactions";
 import TransactionForm from "./components/TransactionForm";
 
@@ -15,6 +16,7 @@ import TransactionForm from "./components/TransactionForm";
 //    1.3. Study ways on fetching data.
 // 2. Add tabs for Accounts
 // 3. React/Tanstack router for tabs.
+// 4. Actions UI - need  to be reusable
 
 function App() {
 	const [activeTab, setActiveTab] = useState("Transactions");

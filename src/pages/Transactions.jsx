@@ -1,12 +1,13 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Title from "../components/StyledComponents/Title";
-import TransactionCard, { Row } from "../components/TransactionCard";
+import TransactionCard from "../components/ui/TransactionCard";
+import TransactionCardContainer from "../components/ui/TransactionCardContainer";
 import Typography from "@mui/material/Typography";
 import PostAddOutlinedIcon from "@mui/icons-material/PostAddOutlined";
 import { useContext } from "react";
 import { TransactionContext } from "../services/context/TransactionContext";
-import MainContainer from "../components/MainContainer";
+import MainContainer from "../components/ui/MainContainer";
 
 function Transactions({ handleOpenModal }) {
 	const { transactions } = useContext(TransactionContext);
@@ -32,10 +33,14 @@ function Transactions({ handleOpenModal }) {
 					</Button>
 				</Box>
 
+				{/* 
+					TransactionCardContainer = row
+					TransactionCard          = cell
+				*/}
 				{transactions.map((tx, index) => (
-					<Row key={index}>
+					<TransactionCardContainer key={index}>
 						<TransactionCard tx={tx} />
-					</Row>
+					</TransactionCardContainer>
 				))}
 			</MainContainer>
 		</>

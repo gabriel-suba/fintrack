@@ -18,8 +18,8 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 
 // Custom components
-import FormDatePicker from "./FormDatePicker";
-import Select from "./Select";
+import FormDatePicker from "./ui/FormDatePicker";
+import Select from "./ui/Select";
 import StyledTransactionForm from "./StyledComponents/StyledTransactionForm";
 
 // Context

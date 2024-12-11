@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { Box, IconButton, Paper, Typography, Chip } from "@mui/material";
-import { styled } from "@mui/system";
+import dayjs from "dayjs";
+import { Chip, IconButton, Paper, Typography } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { grey } from "@mui/material/colors";
 import Actions from "./Actions";
-import dayjs from "dayjs";
+import FlexAlignCenter from "../StyledComponents/FlexAlignCenter";
 
-const FlexAlignCenter = styled(Box)(() => ({
-	display: "flex",
-	alignItems: "center",
-}));
+const txCardActions = [
+	{ action: "Edit", color: "" },
+	{ action: "Delete", color: "error" },
+];
 
 function TransactionCard({ tx }) {
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -57,6 +57,7 @@ function TransactionCard({ tx }) {
 					anchorEl={anchorEl}
 					handleCloseActions={handleCloseActions}
 					openAnchor={openAnchor}
+					list={txCardActions}
 				/>
 			</FlexAlignCenter>
 			<Typography component="p" fontSize={"0.875rem"} marginBlock={"0.5rem"}>
@@ -88,7 +89,7 @@ function TransactionCard({ tx }) {
 	);
 }
 
-export function Row({ children }) {
+export function TransactionCardContainer({ children }) {
 	return (
 		<Paper
 			sx={{

@@ -21,6 +21,10 @@ import AccountsForm from "./components/AccountsForm";
 //    2.1. Accounts form
 // 3. React/Tanstack router for tabs.
 // 4. Form validation - make fields required
+// 5. Integrate React Hook Form to Transaction Form
+//    5.1. Apply Schema
+//    5.2. Give default values
+// 6. Pagination
 
 function App() {
 	const [activeTab, setActiveTab] = useState("Transactions");
@@ -40,21 +44,21 @@ function App() {
 			<Sidebar open={open} setOpen={setOpen}>
 				<SidebarItem
 					open={open}
-					icon={<SpaceDashboardOutlinedIcon sx={{ width: "1.5rem", height: "1.5rem" }} />}
+					Icon={SpaceDashboardOutlinedIcon}
 					text="Dashboard"
 					handleOnClick={(handleSidebarClick)}
 					isActive={activeTab === "Dashboard"}
 				/>
 				<SidebarItem
 					open={open}
-					icon={<ReceiptLongOutlinedIcon sx={{ width: "1.5rem", height: "1.5rem" }} />}
+					Icon={ReceiptLongOutlinedIcon}
 					text="Transactions"
 					handleOnClick={handleSidebarClick}
 					isActive={activeTab === "Transactions"}
 				/>
 				<SidebarItem
 					open={open}
-					icon={<AccountBalanceOutlinedIcon sx={{ width: "1.5rem", height: "1.5rem" }} />}
+					Icon={AccountBalanceOutlinedIcon}
 					text="Accounts"
 					handleOnClick={handleSidebarClick}
 					isActive={activeTab === "Accounts"}

@@ -3,7 +3,7 @@ import grey from "@mui/material/colors/grey";
 import Typography from "@mui/material/Typography";
 import RowItemBase from "../StyledComponents/RowItemBase";
 
-function SidebarItem({ icon, text, open, handleOnClick, isActive }) {
+function SidebarItem({ Icon, text, open, handleOnClick, isActive }) {
     return (
 		<RowItemBase
 			bgcolor={isActive ? grey[100] : grey[0]}
@@ -11,7 +11,7 @@ function SidebarItem({ icon, text, open, handleOnClick, isActive }) {
 			data-tab={text}
 		>
 			<Box padding="0.5rem" display="flex" alignItems="center">
-				{icon}
+				{Icon && <Icon sx={{ width: "1.5rem", height: "1.5rem" }} />}
 			</Box>
 			<Typography
 				component="p"

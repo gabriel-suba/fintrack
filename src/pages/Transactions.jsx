@@ -5,7 +5,7 @@ import TransactionCard, { Row } from "../components/TransactionCard";
 import Typography from "@mui/material/Typography";
 import PostAddOutlinedIcon from "@mui/icons-material/PostAddOutlined";
 import { useContext } from "react";
-import { TransactionContext } from "../context/TransactionContext";
+import { TransactionContext } from "../services/context/TransactionContext";
 import MainContainer from "../components/MainContainer";
 
 function Transactions({ handleOpenModal }) {

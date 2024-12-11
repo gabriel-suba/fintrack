@@ -23,7 +23,7 @@ import Select from "./Select";
 import StyledTransactionForm from "./StyledComponents/StyledTransactionForm";
 
 // Context
-import { TransactionContext } from "../context/TransactionContext";
+import { TransactionContext } from "../services/context/TransactionContext";
 
 // Data
 import { accounts, types } from "../data/mockData";

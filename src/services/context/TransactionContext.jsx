@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import { txs } from '../data/mockData';
+import { txs } from '../../data/mockData';
 
 const TransactionContext = createContext(null);
 

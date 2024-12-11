@@ -1,10 +1,5 @@
-// React hooks
 import { useState, useContext } from "react";
-
-// External libraries
 import dayjs from "dayjs";
-
-// MUI components
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
@@ -16,17 +11,12 @@ import Modal from "@mui/material/Modal";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-
-// Custom components
 import FormDatePicker from "./ui/FormDatePicker";
 import Select from "./ui/Select";
 import StyledTransactionForm from "./StyledComponents/StyledTransactionForm";
-
-// Context
 import { TransactionContext } from "../services/context/TransactionContext";
-
-// Data
 import { accounts, types } from "../data/mockData";
+
 const defaultData = {
 	type: "income",
 	date: new Date(),

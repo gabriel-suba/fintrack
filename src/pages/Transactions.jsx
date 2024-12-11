@@ -37,8 +37,8 @@ function Transactions({ handleOpenModal }) {
 					TransactionCardContainer = row
 					TransactionCard          = cell
 				*/}
-				{transactions.map((tx, index) => (
-					<TransactionCardContainer key={index}>
+				{transactions.map((tx) => (
+					<TransactionCardContainer key={tx.id}>
 						<TransactionCard tx={tx} />
 					</TransactionCardContainer>
 				))}

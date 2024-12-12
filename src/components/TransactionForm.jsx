@@ -1,94 +1,153 @@
-import { useState, useContext } from "react";
+import { useState, useEffect } from "react";
+import { useForm, Controller } from "react-hook-form";
 import dayjs from "dayjs";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import FormControl from "@mui/material/FormControl";
 import InputAdornment from "@mui/material/InputAdornment";
-import InputLabel from "@mui/material/InputLabel";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import TextField from "@mui/material/TextField";
 import FormDatePicker from "./ui/FormDatePicker";
-import Select from "./ui/Select";
 import FormModal from "./ui/FormModal";
-import { TransactionContext } from "../services/context/TransactionContext";
+import CustomInput from "./ui/CustomInput";
+import CustomSelect from "./ui/CustomSelect";
 import { accounts, types } from "../data/mockData";
 
-const defaultData = {
-	type: "income",
-	date: new Date(),
-	memo: "",
-	from: "",
-	account: "cash",
-	amount: "",
-}
+const schema = yup.object({
+	type: yup.string().required().label("Type"),
+	account: yup.string().required().label("Account"),
+	amount: yup.number().required().label("Amount"),
+	memo: yup.string().max(50).label("Memo"),
+	from: yup
+		.string()
+		.nullable()
+		.when("type", {
+			is: (value) => value?.toLowerCase() === "transfer",
+			then: () => yup.string().required().label("Transfer"),
+			otherwise: () => yup.string().default(""),
+		}),
+	date: yup.date().label("Date"),
+});
 
 function TransactionForm({ openModal, handleCloseModal }) {
-	const [formValues, setFormValues] = useState(defaultData);
-	const { transactions, setTransactions } = useContext(TransactionContext);
-
-	const handleValuesChange = (e) => {
-		let { target: { name, value } } = e;
-		setFormValues(prev => ({ ...prev, [name]: value }));
-	}
+	const [type, setType] = useState("");
+	const {
+		reset,
+		setValue,
+		register,
+		control,
+		handleSubmit,
+		watch,
+		formState: { errors },
+	} = useForm({
+		resolver: yupResolver(schema),
+		defaultValues: {
+			type: "",
+			account: "",
+			from: "",
+			date: new Date(),
+		},
+	});
 
 	const handleFormClose = () => {
-		setFormValues(defaultData);
+		reset();
 		handleCloseModal();
-	}
-
-	const handleOnSubmit = (e) => {
-		e.preventDefault();
-
-		const id = transactions.length + 1;
-		const idWithLeadingZeros = id.toString().padStart(6, "0");
-		const documentNumber = `TX${idWithLeadingZeros}`;
-
-		setTransactions(prev => [...prev, { ...formValues, id: id, documentNumber: documentNumber }]);
+	};
+	const handleOnSubmit = (data) => {
+		const rawDate = data.date;
+		const payload = {
+			...data,
+			date: dayjs(rawDate).format("YYYY/MM/DD")
+		}
+		console.log(payload);
 		handleFormClose();
-	}
+	};
+	const typeField = watch("type");
+
+	useEffect(() => {
+		if (typeField !== "transfer") {
+			setValue("from", "");
+		}
+		console.log(1)
+		setType(typeField);
+	}, [typeField, setValue]);
 
 	return (
-		<FormModal
-			open={openModal}
-			ariaLabel="transaction-form"
-			handleFormClose={handleFormClose}
-			title="New Transaction"
-		>
-				<Box component="form" onSubmit={handleOnSubmit}>
-					<Select name="type" value={formValues.type} options={types} handleOnChange={handleValuesChange} />
-					<Select name="account" value={formValues.account} options={accounts} handleOnChange={handleValuesChange} />
-					{
-						formValues.type === "transfer" && 
-						<Select name="from" value={formValues.from} options={accounts} handleOnChange={handleValuesChange} />
-					}
-					<FormDatePicker value={dayjs(formValues.date)} handleOnChange={handleValuesChange} />
-
-					<FormControl fullWidth margin="dense">
-						<InputLabel htmlFor="amount">Amount</InputLabel>
-						<OutlinedInput
-							inputMode="numeric"
-							type="number"
-							id="amount"
-							name="amount"
-							label="Amount"
-							startAdornment={<InputAdornment position="start">&#8369;</InputAdornment>}
-							value={formValues.amount}
-							onChange={handleValuesChange}
+		<FormModal open={openModal} ariaLabel="transaction-form" handleFormClose={handleFormClose} title="New Transaction">
+			<Box component="form" onSubmit={handleSubmit(handleOnSubmit)}>
+				<Controller
+					name="type"
+					control={control}
+					render={({ field: { onChange, onBlur, value } }) => (
+						<CustomSelect
+							onBlur={onBlur}
+							onChange={onChange}
+							value={value}
+							options={types}
+							name="type"
+							validationError={errors.type}
 						/>
-					</FormControl>
-					<TextField
-						multiline
-						id="textarea-memo"
-						name="memo"
-						label="Memo"
-						value={formValues.memo}
-						onChange={handleValuesChange}
-						fullWidth
-						margin="dense"
-						minRows={2}
+					)}
+				/>
+				<Controller
+					name="account"
+					control={control}
+					render={({ field: { onChange, onBlur, value } }) => (
+						<CustomSelect
+							onBlur={onBlur}
+							onChange={onChange}
+							value={value}
+							options={accounts}
+							name="account"
+							validationError={errors.account}
+						/>
+					)}
+				/>
+				{type === "transfer" && (
+					<Controller
+						name="from"
+						control={control}
+						render={({ field: { onChange, onBlur, value } }) => (
+							<CustomSelect
+								onBlur={onBlur}
+								onChange={onChange}
+								value={value}
+								options={accounts}
+								name="from"
+								validationError={errors.from}
+							/>
+						)}
 					/>
-					<Button type="submit" variant="contained" sx={{ marginTop: "1rem" }}>Submit</Button>
-				</Box>
+				)}
+				<Controller
+					name="date"
+					control={control}
+					render={({ field: { onChange, onBlur, value } }) => (
+						<FormDatePicker onBlur={onBlur} onChange={onChange} value={dayjs(value)} />
+					)}
+				/>
+				<CustomInput
+					name="amount"
+					validationError={errors.amount}
+					register={register}
+					type="number"
+					id="amount"
+					label="amount"
+					startAdornment={<InputAdornment position="start">&#8369;</InputAdornment>}
+				/>
+				<CustomInput
+					name="memo"
+					validationError={errors.memo}
+					register={register}
+					type="text"
+					id="memo"
+					label="memo"
+					multiline={true}
+					minRows={2}
+				/>
+				<Button type="submit" variant="contained" sx={{ marginTop: "1rem" }}>
+					Submit
+				</Button>
+			</Box>
 		</FormModal>
 	);
 }

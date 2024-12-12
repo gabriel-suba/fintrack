@@ -17,14 +17,8 @@ import AccountsForm from "./components/AccountsForm";
 //    1.1. Logic is still a placeholder.
 //    1.2. Need to create backend.
 //    1.3. Study ways on fetching data.
-// 2. Add tabs for Accounts - IN PROGRESS
-//    2.1. Accounts form
-// 3. React/Tanstack router for tabs.
-// 4. Form validation - make fields required
-// 5. Integrate React Hook Form to Transaction Form
-//    5.1. Apply Schema
-//    5.2. Give default values
-// 6. Pagination
+// 2. React/Tanstack router for tabs.
+// 3. Pagination
 
 function App() {
 	const [activeTab, setActiveTab] = useState("Transactions");

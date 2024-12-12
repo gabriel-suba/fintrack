@@ -2,12 +2,13 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-function FormDatePicker({ value, handleOnChange }) {
+function FormDatePicker({ value, onBlur, onChange }) {
 	return (
 		<LocalizationProvider dateAdapter={AdapterDayjs}>
 			<DatePicker
 				value={value}
-				onChange={(newValue) => handleOnChange({ target: { name: "date", value: newValue.format("YYYY/MM/DD") } })}
+				onChange={onChange}
+				onBlur={onBlur}
 				format="YYYY/MM/DD"
 				label="Transaction Date"
 				slotProps={{

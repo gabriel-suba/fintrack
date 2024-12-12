@@ -15,7 +15,7 @@ import { accounts, types } from "../data/mockData";
 const schema = yup.object({
 	type: yup.string().required().label("Type"),
 	account: yup.string().required().label("Account"),
-	amount: yup.number().typeError("Amount must be a number").required().label("Amount"),
+	amount: yup.number().typeError("Amount can't be blank").required().label("Amount"),
 	memo: yup.string().max(50).label("Memo"),
 	from: yup
 		.string()
@@ -67,7 +67,7 @@ function TransactionForm({ openModal, handleCloseModal }) {
 		if (typeField !== "transfer") {
 			setValue("from", "");
 		}
-		
+
 		setType(typeField);
 	}, [typeField, setValue]);
 
